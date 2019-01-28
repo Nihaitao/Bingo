@@ -1,0 +1,63 @@
+<!--miniprogram/pages/room/room.wxml-->
+<view class="page-body">
+  <form bindsubmit="formSubmit" wx:if="{{playtype==1}}">
+    <view class="page-section">
+      <view class="page-section-title">Maximum</view>
+      <view class="textarea-wrp">
+        <slider activeColor='#1aad19' name="maxNumber" min='10' value='100' max='1000' step='10' show-value block-size='22'></slider>
+      </view>
+    </view>
+    <view class="page-section">
+      <view class="page-section-title">Players</view>
+      <view class="textarea-wrp">
+        <slider activeColor='#1aad19' name="peopleCount" min='1' value='8' max='20' step='1' show-value block-size='22'></slider>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button class='button' formType="submit">Confirm</button>
+    </view>
+  </form>
+  <view wx:if="{{playtype==2}}">
+    <view class="page-section-room">
+      <view class='roomInfo'>
+        <text class="roomNumber-title">room:</text>
+        <text class="roomNumber">{{roomInfo.roomNumber}}</text>
+      </view>
+      <view class='roomInfo'>
+        <text class="roomNumber-title">players:</text>
+        <text class="roomNumber">{{roomInfo.players.length}}/{{roomInfo.peopleCount}}</text>
+      </view>
+    </view>
+    <view class='user-section'>
+      <view class='row-section' wx:for="{{roomInfo.players}}" wx:key="item">
+        <image class="userinfo-avatar {{item.ready == 1 ? 'userinfo-avatar-ready' : 'userinfo-avatar-unready'}}" src="{{item.avatarUrl}}" mode="cover"></image>
+      </view>
+    </view>
+    <view class="room-area">
+      <text class="room-text">{{myReady == 1 ? 'wait for game beginning' : roomInfo.players.length < roomInfo.peopleCount ? 'wait for your little buddy' : 'please be ready'}}</text>
+    </view>
+    <view class="btn-area" wx:if="{{myReady == 0}}">
+      <button class='button' disabled='{{roomInfo.players.length < roomInfo.peopleCount}}' bindtap='beReady'>Ready</button>
+    </view>
+  </view>
+
+  <view wx:if="{{playtype==3}}">
+    <view class='page-section-game'>    
+        <text class='player-round' wx:if="{{roomInfo.playerIndex == playerIndex}}">Yours</text>
+      <text class='player-round' wx:else>Player {{roomInfo.playerIndex+1}}</text>
+    </view>
+    <view class='user-section'>
+      <view class='row-section' wx:for="{{roomInfo.players}}" wx:key="item">
+        <image class="userinfo-avatar {{item.ready == 1 ? 'userinfo-avatar-ready' : 'userinfo-avatar-unready'}}" src="{{item.avatarUrl}}" mode="cover"></image>
+      </view>
+    </view>
+    <view class="room-area">
+      <text class="number-text">{{roomInfo.low || 0}} ＜ <text class="number-text-max">?</text>  ＜ {{roomInfo.high || roomInfo.maxNumber}}</text>
+    </view>
+    <view class="btn-area">
+      <button class='button' disabled='{{roomInfo.playerIndex!=playerIndex}}' bindtap='bingoFn'>Guess</button>
+    </view>
+  </view>
+  
+  <guess id='guess' bind:guessEvent='guessFn'></guess>  
+</view>

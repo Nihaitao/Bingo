@@ -1,0 +1,128 @@
+/* miniprogram/pages/room/room.wxss */
+@import "../../lib/weui.wxss";
+
+.page-body {
+  margin: 20px auto;
+}
+
+textarea {
+  width: 700rpx;
+  padding: 25rpx 0;
+}
+
+.textarea-wrp {
+  padding: 0 25rpx;
+  background-color: #fff;
+}
+
+.page-section {
+  width: 100%;
+  margin-bottom: 80rpx;
+}
+
+.page-section-title {
+  font-size: 28rpx;
+  color: #999;
+  margin-bottom: 10rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+}
+
+.room-area {
+  width: 100%;
+  position: absolute;
+  bottom: 140px;
+  text-align: center;
+}
+
+.room-text {
+  font-size: 40rpx;
+  color: #aaa;
+}
+
+.page-section-room {
+  width: 100%;
+  margin-bottom: 40rpx;
+  display: flex;  
+  justify-content:space-between;
+}
+
+.roomInfo {
+  flex:1;
+}
+
+.roomNumber-title {
+  color: #aaa;
+}
+
+.roomNumber {
+  color: #ec5300;
+  font-size: 48rpx;
+}
+
+.btn-area {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.button {
+  background-color: #1aad19;
+  color: white;
+}
+
+.user-section {
+  margin: 20rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.row-section {
+  padding: 10rpx;
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.userinfo-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.userinfo-avatar-unready {
+  border: 6rpx solid #aaa;
+}
+
+.userinfo-avatar-ready {
+  border: 6rpx solid #1aad19;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+.page-section-game {
+  width: 100%;
+  margin-bottom: 40rpx;
+  display: flex;  
+  justify-content:center;
+  text-align: center;
+}
+.player-round{
+  flex: 1;
+  color: #ec5300;
+  font-size: 48rpx;
+}
+
+.number-text{
+  color: #1aad19;
+  font-size: 56rpx;
+}
+
+.number-text-max{
+  align-items:center;
+  font-size: 144rpx;
+  color:  green;
+  font-style: oblique;
+}

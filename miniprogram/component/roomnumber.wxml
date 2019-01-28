@@ -1,0 +1,20 @@
+<!--component/roomnumber.wxml-->
+
+<!--弹窗-->
+<view class="modal-mask" bindtap="hideDialog" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modal-dialog" wx:if="{{showModal}}">
+  <view class="modal-title">房间号</view>
+  <view class="modal-content">
+    <view class="modal-input" bindtap='getFocus'>
+      <input class='modal-input-item' disabled value='{{roomnumber[0]}}' />
+      <input class='modal-input-item' disabled value='{{roomnumber[1]}}' />
+      <input class='modal-input-item' disabled value='{{roomnumber[2]}}' />
+      <input class='modal-input-item' disabled value='{{roomnumber[3]}}' />
+      <input class='modal-input-item' disabled value='{{roomnumber[4]}}' />
+      <input class='modal-input-hidden' type='number' maxlength='5' bindinput='changeFocus' focus='{{inputFocus}}' />
+    </view>
+    <view class='modal-botton'>
+      <button class="btn-area" type='primary' disabled='{{disabled}}' catchtap='_joinEvent'>Join</button>
+    </view>
+  </view>
+</view>

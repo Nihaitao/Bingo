@@ -1,0 +1,35 @@
+/* miniprogram/pages/index/index.wxss */
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.user-button {
+  position: absolute;
+  bottom: 100px;
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+}
+
+.user-button-item {
+  flex:1;
+  color: #1aad19;
+  background-color: white;
+  border: solid 1px #1aad19;
+  width: 90px;
+}
