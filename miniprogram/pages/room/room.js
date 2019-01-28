@@ -86,8 +86,11 @@ Page({
             roomInfo: res.result.data[0]
           })
           //游戏逻辑
-          if (that.data.roomInfo.gameStatus === 1) {//游戏进行中
-            console.log("Game Start")
+          if (that.data.roomInfo.gameStatus === 1) {//游戏进行中          
+            that.setData({
+              playtype: 3
+            })
+            
           }
 
 

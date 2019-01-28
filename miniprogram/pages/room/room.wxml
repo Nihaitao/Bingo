@@ -17,7 +17,7 @@
       <button class='button' formType="submit">Confirm</button>
     </view>
   </form>
-  <view wx:else>
+  <view wx:if="{{playtype==2}}">
     <view class="page-section-room">
       <view class='roomInfo'>
         <text class="roomNumber-title">room:</text>
@@ -39,5 +39,30 @@
     <view class="btn-area" wx:if="{{myReady == 0}}">
       <button class='button' disabled='{{roomInfo.players.length < roomInfo.peopleCount}}' bindtap='beReady'>Ready</button>
     </view>
+  </view>
+
+  
+  <view wx:if="{{playtype==3}}">
+    <!-- <view class="page-section-room">
+      <view class='roomInfo'>
+        <text class="roomNumber-title">room:</text>
+        <text class="roomNumber">{{roomInfo.roomNumber}}</text>
+      </view>
+      <view class='roomInfo'>
+        <text class="roomNumber-title">players:</text>
+        <text class="roomNumber">{{roomInfo.players.length}}/{{roomInfo.peopleCount}}</text>
+      </view>
+    </view>
+    <view class='user-section'>
+      <view class='row-section' wx:for="{{roomInfo.players}}" wx:key="item">
+        <image class="userinfo-avatar {{item.ready == 1 ? 'userinfo-avatar-ready' : 'userinfo-avatar-unready'}}" src="{{item.avatarUrl}}" mode="cover"></image>
+      </view>
+    </view>
+    <view class="room-area">
+      <text class="room-text">{{myReady == 1 ? 'wait for game beginning' : roomInfo.players.length < roomInfo.peopleCount ? 'wait for your little buddy' : 'please be ready'}}</text>
+    </view>
+    <view class="btn-area">
+      <button class='button' disabled='{{roomInfo.playIndex!=playerIndex}}' bindtap='bingoFn'>Confirm</button>
+    </view> -->
   </view>
 </view>
