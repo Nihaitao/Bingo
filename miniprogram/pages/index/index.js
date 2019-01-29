@@ -15,7 +15,7 @@ Page({
   bindCreate:function(){
     if (!app.globalData.userInfo){
       wx.showToast({
-        title: '请点击授权',
+        title: '请点击获取头像昵称授权',
         icon: 'none',
         duration: 2000
       })
