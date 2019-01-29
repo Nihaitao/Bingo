@@ -47,14 +47,15 @@
       <text class='player-round' wx:else>Player {{roomInfo.playerIndex+1}}</text>
     </view>
     <view class='user-section'>
-      <view class='row-section' wx:for="{{roomInfo.players}}" wx:key="item">
-        <image class="userinfo-avatar {{item.ready == 1 ? 'userinfo-avatar-ready' : 'userinfo-avatar-unready'}}" src="{{item.avatarUrl}}" mode="cover"></image>
+      <view class='row-section' wx:for="{{roomInfo.players}}" wx:key="item" wx:for-index="index">
+        <image class="userinfo-avatar {{index == roomInfo.playerIndex ? 'userinfo-avatar-round' : 'userinfo-avatar-ready'}}" src="{{item.avatarUrl}}" mode="cover"></image>
       </view>
     </view>
     <view class="room-area">
-      <text class="number-text">{{roomInfo.low || 0}} ＜ <text class="number-text-max">?</text>  ＜ {{roomInfo.high || roomInfo.maxNumber}}</text>
+      <text class="bingo" wx:if="{{showBingo}}">{{roomInfo.playerIndex == playerIndex ? 'BINGO' : 'WIN'}}</text>
+      <text class="number-text" wx:else>{{roomInfo.low || 0}} ＜ <text class="number-text-max">?</text>  ＜ {{roomInfo.high || roomInfo.maxNumber}}</text>
     </view>
-    <view class="btn-area">
+    <view class="btn-area" wx:if="{{!showBingo}}">
       <button class='button' disabled='{{roomInfo.playerIndex!=playerIndex}}' bindtap='bingoFn'>Guess</button>
     </view>
   </view>

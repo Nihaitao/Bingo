@@ -10,7 +10,7 @@ Component({
    */
   data: {
     roomnumber: ['', '', '', '', ''],
-    room: '12596',
+    room: '',
     disabled: false,
     inputFocus: true
   },

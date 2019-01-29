@@ -10,12 +10,14 @@ exports.main = async(event, context) => {
     roomNumber: getRandom(),
     peopleCount: event.peopleCount,
     maxNumber: event.maxNumber,
-    bingo: Math.floor(Math.random() * event.maxNumber),
+    bingo: Math.floor(Math.random() * (event.maxNumber - 1)) + 1,
     players: [{
       openId: user.openId,
       nickName: event.nickName,
       avatarUrl: event.avatarUrl
-    }]
+    }],
+    high: event.maxNumber,
+    low: 0
   }
   let res = await db.collection('Rooms').add({
     data: roomInfo

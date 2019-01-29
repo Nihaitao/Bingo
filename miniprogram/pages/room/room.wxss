@@ -53,6 +53,7 @@ textarea {
 
 .roomNumber-title {
   color: #aaa;
+  margin-left: 40rpx;
 }
 
 .roomNumber {
@@ -99,6 +100,10 @@ textarea {
   border: 6rpx solid #1aad19;
 }
 
+.userinfo-avatar-round{
+  border: 6rpx solid #ec5300;
+}
+
 .userinfo-nickname {
   color: #aaa;
 }
@@ -125,4 +130,10 @@ textarea {
   font-size: 144rpx;
   color:  green;
   font-style: oblique;
+}
+
+.bingo{
+  font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color:#ec5300;
+  font-size: 200rpx;
 }

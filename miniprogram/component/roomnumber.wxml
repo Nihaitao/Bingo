@@ -3,7 +3,7 @@
 <!--弹窗-->
 <view class="modal-mask" bindtap="hideDialog" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
 <view class="modal-dialog" wx:if="{{showModal}}">
-  <view class="modal-title">房间号</view>
+  <view class="modal-title">Room Number</view>
   <view class="modal-content">
     <view class="modal-input" bindtap='getFocus'>
       <input class='modal-input-item' disabled value='{{roomnumber[0]}}' />

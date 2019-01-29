@@ -5,7 +5,7 @@
   <view class="modal-title">It's be...</view>
   <view class="modal-content">
     <view class="modal-input" bindtap='getFocus'>
-      <input class='modal-input-item' focus='true' value="{{guessNumber}}" bindblur='getGuessNumber'/>
+      <input class='modal-input-item' focus='true' value="{{guessNumber}}" type='number' maxlength='4' bindinput='getGuessNumber'/>
     </view>
     <view class='modal-botton'>
       <button class="btn-area" type='primary' catchtap='_guessEvent'>Yes</button>

@@ -50,9 +50,16 @@ Page({
     })
     //this.room.hideDialog()
   },
+
   onReady:function(){
     //获得dialog组件
     this.room = this.selectComponent("#room");
+  },
+
+  onShow: function () {
+    if (this.room) {
+      this.room.hideDialog()
+    }
   },
   onLoad: function () {
     if (app.globalData.userInfo) {
