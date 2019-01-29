@@ -31,8 +31,10 @@ textarea {
 .room-area {
   width: 100%;
   position: absolute;
-  bottom: 140px;
+  bottom: 100px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .room-text {
@@ -40,15 +42,55 @@ textarea {
   color: #aaa;
 }
 
+.room-area-view {
+  border: 1px dashed #ddd;
+  border-radius: 2px;
+  margin-top: 30rpx;
+  padding: 20rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.room-area-item {
+  width: 88%;
+  display: flex;
+}
+
+.room-area-title {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 32rpx;
+  color: #666;
+}
+
+.room-area-content {
+  margin-left: 20rpx;
+  font-size: 32rpx;
+  color: #333;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap !important;
+  outline: 0 !important;
+}
+
+.view-image {
+  display: flex;
+  justify-content: center;
+  align-items: Center;
+}
+
+.room-area-image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
 .page-section-room {
   width: 100%;
   margin-bottom: 40rpx;
-  display: flex;  
-  justify-content:space-between;
+  display: flex;
 }
 
 .roomInfo {
-  flex:1;
+  flex: 1;
 }
 
 .roomNumber-title {
@@ -100,40 +142,63 @@ textarea {
   border: 6rpx solid #1aad19;
 }
 
-.userinfo-avatar-round{
+.userinfo-avatar-round {
   border: 6rpx solid #ec5300;
 }
 
 .userinfo-nickname {
   color: #aaa;
 }
+
 .page-section-game {
   width: 100%;
   margin-bottom: 40rpx;
-  display: flex;  
-  justify-content:center;
+  display: flex;
+  justify-content: center;
   text-align: center;
 }
-.player-round{
+
+.player-round {
   flex: 1;
   color: #ec5300;
   font-size: 48rpx;
 }
 
-.number-text{
+.number-text {
   color: #1aad19;
   font-size: 56rpx;
 }
 
-.number-text-max{
-  align-items:center;
+.number-text-max {
+  align-items: center;
   font-size: 144rpx;
-  color:  green;
+  color: green;
   font-style: oblique;
 }
 
-.bingo{
-  font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  color:#ec5300;
+.bingo {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: #ec5300;
   font-size: 200rpx;
+}
+
+.truth-brave{
+  display: flex;
+  justify-content: space-around;
+}
+
+.button-choosen{  
+  flex:1;
+  color: white;
+  background-color: #1aad19;
+  border: solid 1px #1aad19;
+  width: 90px;
+}
+
+.user-button-item {
+  flex:1;
+  color: #1aad19;
+  background-color: white;
+  border: solid 1px #1aad19;
+  width: 90px;
 }

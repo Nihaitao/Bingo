@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "guess": "/component/guess"
+    "guess": "/component/guess",
+    "truthOrBrave": "/component/truthOrBrave"
   }
 }

@@ -1,5 +1,6 @@
 <!--miniprogram/pages/room/room.wxml-->
 <view class="page-body">
+  <!-- 创建房间 -->
   <form bindsubmit="formSubmit" wx:if="{{playtype==1}}">
     <view class="page-section">
       <view class="page-section-title">Maximum</view>
@@ -17,6 +18,7 @@
       <button class='button' formType="submit">Confirm</button>
     </view>
   </form>
+  <!-- 准备阶段 -->
   <view wx:if="{{playtype==2}}">
     <view class="page-section-room">
       <view class='roomInfo'>
@@ -35,15 +37,33 @@
     </view>
     <view class="room-area">
       <text class="room-text">{{myReady == 1 ? 'wait for game beginning' : roomInfo.players.length < roomInfo.peopleCount ? 'wait for your little buddy' : 'please be ready'}}</text>
+      <view class='room-area-view' wx:if="{{myReady == 0}}">
+        <view class="room-area-item">
+          <text class='room-area-title'>Truth</text>
+          <text class='room-area-content'>{{truth}}</text>
+        </view>
+        <view class='view-image' bindtap="setTruth">
+          <image class='room-area-image' src='../../images/edit.png'></image>
+        </view>
+      </view>
+      <view class='room-area-view' wx:if="{{myReady == 0}}">
+        <view class="room-area-item">
+          <text class='room-area-title'>Brave</text>
+          <text class='room-area-content'>{{brave}}</text>
+        </view>
+        <view class='view-image' bindtap="setBrave">
+          <image class='room-area-image' src='../../images/edit.png'></image>
+        </view>
+      </view>
     </view>
     <view class="btn-area" wx:if="{{myReady == 0}}">
       <button class='button' disabled='{{roomInfo.players.length < roomInfo.peopleCount}}' bindtap='beReady'>Ready</button>
     </view>
   </view>
-
+  <!-- 游戏阶段 -->
   <view wx:if="{{playtype==3}}">
-    <view class='page-section-game'>    
-        <text class='player-round' wx:if="{{roomInfo.playerIndex == playerIndex}}">Yours</text>
+    <view class='page-section-game'>
+      <text class='player-round' wx:if="{{roomInfo.playerIndex == playerIndex}}">Yours</text>
       <text class='player-round' wx:else>Player {{roomInfo.playerIndex+1}}</text>
     </view>
     <view class='user-section'>
@@ -53,12 +73,21 @@
     </view>
     <view class="room-area">
       <text class="bingo" wx:if="{{showBingo}}">{{roomInfo.playerIndex == playerIndex ? 'BINGO' : 'WIN'}}</text>
-      <text class="number-text" wx:else>{{roomInfo.low || 0}} ＜ <text class="number-text-max">?</text>  ＜ {{roomInfo.high || roomInfo.maxNumber}}</text>
+      <text class="number-text" wx:else>{{roomInfo.low || 0}} ＜ <text class="number-text-max">?</text> ＜ {{roomInfo.high || roomInfo.maxNumber}}</text>
+      <view class='truth-brave' wx:if="{{showBingo && roomInfo.playerIndex == playerIndex}}">
+        <view bindtap="bindTruth">
+          <button class='{{chooseType == "Truth" ? "button-choosen": "user-button-item "}}' disabled='{{chooseType == "Brave"}}'> Truth </button>
+        </view>
+        <view bindtap="bindBrave">
+          <button class='{{chooseType == "Brave" ? "button-choosen" : "user-button-item "}}' disabled='{{chooseType == "Truth"}}'> Brave </button>
+        </view>
+      </view>
     </view>
     <view class="btn-area" wx:if="{{!showBingo}}">
       <button class='button' disabled='{{roomInfo.playerIndex!=playerIndex}}' bindtap='bingoFn'>Guess</button>
     </view>
   </view>
-  
-  <guess id='guess' bind:guessEvent='guessFn'></guess>  
+
+  <guess id='guess' bind:guessEvent='guessFn'></guess>
+  <truthOrBrave id='truthOrBrave' title="{{trueOrBraveTitle}}" content="{{trueOrBraveContent}}" bind:yesEvent='yesFn'></truthOrBrave>
 </view>

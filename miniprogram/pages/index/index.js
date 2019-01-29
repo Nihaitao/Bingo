@@ -13,12 +13,28 @@ Page({
   },
   //Create
   bindCreate:function(){
+    if (!app.globalData.userInfo){
+      wx.showToast({
+        title: '请点击授权',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
     wx.navigateTo({
       url: '../room/room?playtype=1'
     })
   },
   //Join
-  bindJoin: function () {    
+  bindJoin: function () {
+    if (!app.globalData.userInfo) {
+      wx.showToast({
+        title: '请点击授权',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }  
     this.room.showDialog()    
   },
   joinFn:function(){

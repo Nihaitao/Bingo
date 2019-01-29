@@ -11,7 +11,13 @@ Page({
     roomInfo: {},
     myReady: 0,
     playerIndex: 0,
-    showBingo: false
+    showBingo: false,
+    truth:'有没有吃过鼻屎',
+    brave:'发18元红包给后面第三位玩家',
+    trueOrBraveTitle:'',
+    trueOrBraveContent:'',
+    chooseType:'',
+    trueOrBraveText:''
   },
 
   /**
@@ -34,14 +40,27 @@ Page({
    */
   onReady: function() {
     //获得dialog组件
-    this.guess = this.selectComponent("#guess");
+    this.guess = this.selectComponent("#guess")
+    this.truthOrBrave = this.selectComponent("#truthOrBrave")
+    wx.cloud.callFunction({
+      name: 'RandomTruthAndBrave',
+    }).then(res => {
+      if(res.result){
+        this.setData({
+          truth: res.result.Truth.text,
+          brave: res.result.Brave.text
+        })
+      }
+     }).catch(res => {
+      console.log(res)
+    })
   },
 
   /**
    * 生命周期函数--onShow
    */
   onShow: function() {
-    console.log('show')
+    console.log('show')    
   },
   /**
    * 生命周期函数--onHide
@@ -89,11 +108,29 @@ Page({
   },
 
   beReady: function() {
+    if (!this.data.truth || !this.data.truth.trim('')){
+      wx.showToast({
+        title: `pls set thr Truth`,
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (!this.data.brave || !this.data.brave.trim('')) {
+      wx.showToast({
+        title: `pls set the Brave`,
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
     let that = this
     wx.cloud.callFunction({
       name: 'BeReady',
       data: {
-        _id: that.data.roomInfo._id
+        _id: that.data.roomInfo._id,
+        truth: that.data.truth,
+        brave: that.data.brave
       }
     }).then(res => {
       if (res.result) {
@@ -200,6 +237,106 @@ Page({
         console.log(res)
       })
     }
+  },
+  /**
+   * 真心话
+   */
+  setTruth:function(){
+    console.log("setTruth")
+    this.setData({
+      trueOrBraveTitle:"Truth",
+      trueOrBraveContent:this.data.truth
+    })
+    this.truthOrBrave.showDialog()
+  },
+  /**
+   * 大冒险
+   */
+  setBrave: function () {
+    console.log("setBrave")
+    this.setData({
+      trueOrBraveTitle: "Brave",
+      trueOrBraveContent: this.data.brave
+    })
+    this.truthOrBrave.showDialog()
 
+  },
+  yesFn:function(){
+    if (this.truthOrBrave.data.title == "Truth") {
+      this.setData({
+        truth: this.truthOrBrave.data.textInfo
+      })
+    } else {
+      this.setData({
+        brave: this.truthOrBrave.data.textInfo
+      })
+    }
+    this.truthOrBrave.hideDialog()
+  },
+  bindTruth:function(){
+    if (this.data.chooseType){
+      wx.showModal({
+        title: 'Truth',
+        content: this.data.trueOrBraveText,
+        showCancel: false
+      })
+    }else{
+      this.setData({
+        chooseType: 'Truth'
+      })
+      wx.cloud.callFunction({
+        name: 'GetTruthOrBrave',
+        data: {
+          _id: this.data.roomInfo._id,
+          model: "Truth"
+        }
+      }).then(res => {
+        if (res.result) {
+          this.setData({
+            trueOrBraveText: res.result
+          })
+          wx.showModal({
+            title: 'Truth',
+            content: res.result,
+            showCancel: false
+          })
+        }
+      }).catch(res => {
+        console.log(res)
+      })
+    }
+  },
+  bindBrave: function () {
+    if (this.data.chooseType) {
+      wx.showModal({
+        title: 'Brave',
+        content: this.data.trueOrBraveText,
+        showCancel: false
+      })
+    } else {
+      this.setData({
+        chooseType: 'Brave'
+      })
+      wx.cloud.callFunction({
+        name: 'GetTruthOrBrave',
+        data: {
+          _id: this.data.roomInfo._id,
+          model: "Brave"
+        }
+      }).then(res => {
+        if (res.result) {
+          this.setData({
+            trueOrBraveText: res.result
+          })
+          wx.showModal({
+            title: 'Brave',
+            content: res.result,
+            showCancel: false
+          })
+        }
+      }).catch(res => {
+        console.log(res)
+      })
+    }
   }
 })

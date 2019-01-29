@@ -11,7 +11,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-    guessNumber: ''
+    guessNumber: '',
+    showModal: false
   },
 
   /**
