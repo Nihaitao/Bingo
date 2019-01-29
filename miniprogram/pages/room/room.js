@@ -262,14 +262,16 @@ Page({
 
   },
   yesFn:function(){
-    if (this.truthOrBrave.data.title == "Truth") {
-      this.setData({
-        truth: this.truthOrBrave.data.textInfo
-      })
-    } else {
-      this.setData({
-        brave: this.truthOrBrave.data.textInfo
-      })
+    if (this.truthOrBrave.data.textInfo) {
+      if (this.truthOrBrave.data.title == "Truth") {
+        this.setData({
+          truth: this.truthOrBrave.data.textInfo
+        })
+      } else {
+        this.setData({
+          brave: this.truthOrBrave.data.textInfo
+        })
+      }
     }
     this.truthOrBrave.hideDialog()
   },
@@ -332,6 +334,42 @@ Page({
             title: 'Brave',
             content: res.result,
             showCancel: false
+          })
+        }
+      }).catch(res => {
+        console.log(res)
+      })
+    }
+  },
+  bindPunishment() {
+    if (this.data.chooseType) {
+      wx.showModal({
+        title: this.data.chooseType,
+        content: this.data.trueOrBraveText,
+        showCancel: false
+      })
+    } else {
+      wx.cloud.callFunction({
+        name: 'GetRoomInfo',
+        data: {
+          _id: this.data.roomInfo._id
+        }
+      }).then(res => {
+        if (res.result && res.result.data[0].chooseType && res.result.data[0].trueOrBraveText) {
+          this.setData({
+            chooseType: res.result.data[0].chooseType,
+            trueOrBraveText: res.result.data[0].trueOrBraveText
+          })
+          wx.showModal({
+            title: this.data.chooseType,
+            content: this.data.trueOrBraveText,
+            showCancel: false
+          })
+        }else{
+          wx.showToast({
+            title: `wait for ${this.data.roomInfo.players[this.data.roomInfo.playerIndex].nickName} choose the punishment`,
+            icon: 'none',
+            duration: 2000
           })
         }
       }).catch(res => {

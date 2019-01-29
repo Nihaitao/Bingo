@@ -11,5 +11,16 @@ exports.main = async (event, context) => {
 
   let index = Math.floor(Math.random() * roomInfo.data[0].players.length)
 
-  return event.model == "Truth" ? roomInfo.data[0].players[index].truth : roomInfo.data[0].players[index].brave
+  let text = event.model == "Truth" ? roomInfo.data[0].players[index].truth : roomInfo.data[0].players[index].brave
+
+  await db.collection('Rooms').where({
+    _id: event._id
+  }).update({
+    data: {
+      chooseType: event.model,
+      trueOrBraveText: text
+    }
+  })
+
+  return text
 }

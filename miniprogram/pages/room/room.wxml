@@ -72,7 +72,16 @@
       </view>
     </view>
     <view class="room-area">
-      <text class="bingo" wx:if="{{showBingo}}">{{roomInfo.playerIndex == playerIndex ? 'BINGO' : 'WIN'}}</text>
+      <view wx:if="{{showBingo}}">
+        <text class="bingo" wx:if="{{roomInfo.playerIndex == playerIndex}}">BINGO</text>
+        <view class="bingo-view" wx:else>
+          <text class="number-text">{{roomInfo.low || 0}} ＜ <text class="number-text-max">{{roomInfo.bingo}}</text> ＜ {{roomInfo.high || roomInfo.maxNumber}}</text>
+          <text class="bingo-else">BINGO {{roomInfo.players[roomInfo.playerIndex].nickName}}</text>          
+        <view bindtap="bindPunishment">
+          <button class='user-button-item-punishment'>Punishment</button>
+        </view>
+        </view>
+      </view>
       <text class="number-text" wx:else>{{roomInfo.low || 0}} ＜ <text class="number-text-max">?</text> ＜ {{roomInfo.high || roomInfo.maxNumber}}</text>
       <view class='truth-brave' wx:if="{{showBingo && roomInfo.playerIndex == playerIndex}}">
         <view bindtap="bindTruth">

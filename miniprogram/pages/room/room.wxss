@@ -182,13 +182,24 @@ textarea {
   font-size: 200rpx;
 }
 
-.truth-brave{
+.bingo-else {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: #ec5300;
+  font-size: 64rpx;
+}
+
+.bingo-view {
+  display: flex;
+  flex-direction: column;
+}
+
+.truth-brave {
   display: flex;
   justify-content: space-around;
 }
 
-.button-choosen{  
-  flex:1;
+.button-choosen {
+  flex: 1;
   color: white;
   background-color: #1aad19;
   border: solid 1px #1aad19;
@@ -196,9 +207,18 @@ textarea {
 }
 
 .user-button-item {
-  flex:1;
+  flex: 1;
   color: #1aad19;
   background-color: white;
   border: solid 1px #1aad19;
   width: 90px;
+}
+
+.user-button-item-punishment{
+  margin-top:20rpx;
+  flex: 1;
+  color: white;
+  background-color: #1aad19;
+  border: solid 1px #1aad19;
+  width: 140px;
 }
