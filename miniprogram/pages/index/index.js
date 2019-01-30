@@ -10,6 +10,15 @@ Page({
   },
   //点击头像
   bindViewTap: function () {
+    console.log(1)
+  },
+
+  getUserInfo: function (e) {
+    app.globalData.userInfo = e.detail.userInfo
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
   },
   //Create
   bindCreate:function(){

@@ -220,6 +220,9 @@ Page({
       } else {
         roomInfo.high = guessNumber
       }
+      wx.showLoading({
+        title: 'loading',
+      })
       wx.cloud.callFunction({
         name: 'GuessNumber',
         data: {
@@ -231,6 +234,7 @@ Page({
           this.setData({
             roomInfo: roomInfo
           })
+          wx.hideLoading()
           this.guess.hideDialog()
         }
       }).catch(res => {
